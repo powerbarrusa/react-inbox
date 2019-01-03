@@ -1,14 +1,13 @@
-import React, { Component } from 'react';
+import React from 'react';
 import SingleMessage from './singlemessage';
 
-class Messages extends Component{
-  render(){
-    return(
+const MessageList = (props) => {
+  return (
     <div className="container">
       <SingleMessage />
     </div>
     )
   }
-}
 
-export default Messages
+
+export default MessageList

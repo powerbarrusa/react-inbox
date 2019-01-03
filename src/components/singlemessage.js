@@ -1,8 +1,7 @@
-import React, { Component } from 'react';
+import React from 'react';
 
-class SingleMessage extends Component{
-  render(){
-    return(
+const SingleMessage = (props) => {
+  return (
     <div className="container">
       <div className="row message unread">
         <div className="col-xs-1">
@@ -24,6 +23,6 @@ class SingleMessage extends Component{
     </div>
     )
   }
-}
+
 
 export default SingleMessage

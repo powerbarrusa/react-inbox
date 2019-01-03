@@ -4,9 +4,11 @@ import Toolbar from './components/toolbar.js';
 import Messages from './components/messages.js';
 
 class App extends Component {
-  constructor(){
-    super()
-    this.state = {}
+  constructor(props){
+    super(props)
+    this.state = {
+      messages: ["Email 1", "Email 2", "Email 3"]
+    }
   }
    
     getEmail = () => {
@@ -29,7 +31,7 @@ class App extends Component {
     return (
       <div className="App">
         <Toolbar />
-        <Messages />
+        <Messages messages={this.state.messages}/>
       </div>
     )
   }
