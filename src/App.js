@@ -29,7 +29,7 @@ class App extends Component {
     return (
       <div className="App">
         <Toolbar />
-        <Messages email={this.getEmail} />
+        <Messages />
       </div>
     )
   }
