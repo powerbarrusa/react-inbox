@@ -7,31 +7,23 @@ class App extends Component {
   constructor(props){
     super(props)
     this.state = {
-      messages: ["Email 1", "Email 2", "Email 3"]
+      email: []
     }
   }
    
-    getEmail = () => {
-      return fetch('http://localhost:8082/api/messages')
-      .then(res => res.json())
-      .then(email => {
-        this.setState({email: email.results})
-        console.log(email)
-        return email
-        })
-      }
-
-
-    componentDidMount(){
-      this.getEmail()
-      .catch(err => console.error(err))
+  async componentDidMount(){
+    const api = await fetch('http://localhost:8082/api/messages')
+    const messages = await api.json()
+    this.setState({
+        email: messages
+      })
     }
 
   render() {
     return (
-      <div className="App">
+      <div className="container">
         <Toolbar />
-        <Messages messages={this.state.messages}/>
+        <Messages inbox={this.state.email}/>
       </div>
     )
   }
