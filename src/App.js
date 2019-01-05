@@ -19,11 +19,39 @@ class App extends Component {
       })
     }
 
+  messageRead = (id) => {
+    const updateMessage = this.state.email.map(messages => {
+      if (messages.id === id){
+        messages.read = !messages.read
+      }
+      return messages
+    })
+    this.setState({
+      email: updateMessage
+    })
+  }
+
+  messageSelected = (event) => {
+    const selected = this.state.email.map(messages => {
+      if (messages.selected){
+        messages.selected = !messages.selected
+      }
+      return messages
+    })
+    this.setState({
+      email: selected
+    })
+  }
+
   render() {
     return (
       <div className="container">
         <Toolbar />
-        <Messages inbox={this.state.email}/>
+        <Messages
+        inbox={this.state.email}
+        messageRead={this.messageRead}
+        messageSelected={this.messageSelected}
+        />
       </div>
     )
   }

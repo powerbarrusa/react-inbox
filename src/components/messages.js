@@ -8,6 +8,8 @@ const MessageList = (props) => {
         return <SingleMessage
           message={message}
           key={idx}
+          messageRead={props.messageRead}
+          messageSelected={props.messageSelected}
         />
         })
       }
