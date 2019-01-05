@@ -31,6 +31,10 @@ class App extends Component {
     })
   }
 
+  messageReadToolbar = () => {
+    console.log("hello")
+  }
+
   messageSelected = (event) => {
     const selected = this.state.email.map(messages => {
       if (messages.selected){
@@ -46,11 +50,13 @@ class App extends Component {
   render() {
     return (
       <div className="container">
-        <Toolbar />
+        <Toolbar
+          readButtonToolbar={this.messageReadToolbar}
+        />
         <Messages
-        inbox={this.state.email}
-        messageRead={this.messageRead}
-        messageSelected={this.messageSelected}
+          inbox={this.state.email}
+          messageRead={this.messageReadButton}
+          messageSelected={this.messageSelected}
         />
       </div>
     )

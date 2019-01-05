@@ -14,7 +14,7 @@ const Toolbar = (props) => {
             <i className="fa fa-square-o"></i>
           </button>
 
-          <button className="btn btn-default" disabled="disabled">
+          <button onClick={props.readButtonToolbar} className="btn btn-default">
             Mark As Read
           </button>
 
