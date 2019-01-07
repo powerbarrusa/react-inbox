@@ -10,6 +10,7 @@ const MessageList = (props) => {
             message={message}
             key={idx}
             messageRead={props.messageRead}
+            messageUnread={props.messageUnread}
             messageSelected={props.messageSelected}
           />
           )

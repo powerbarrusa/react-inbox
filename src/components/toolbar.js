@@ -18,7 +18,7 @@ const Toolbar = (props) => {
             Mark As Read
           </button>
 
-          <button className="btn btn-default" disabled="disabled">
+          <button onClick={props.unreadButtonToolbar} className="btn btn-default">
             Mark As Unread
           </button>
 
