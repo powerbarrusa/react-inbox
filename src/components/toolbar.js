@@ -1,6 +1,13 @@
 import React from 'react';
 
 const Toolbar = (props) => {
+
+  function disabledTool() {
+    const selected = props.state.email.map(message => message.selected)
+    const check = selected === true ? "" : "disabled"
+    return check
+  }
+
   return (
     <div className="container">
       <div className="row toolbar">
@@ -14,7 +21,7 @@ const Toolbar = (props) => {
             <i className="fa fa-square-o"></i>
           </button>
 
-          <button onClick={props.readButtonToolbar} className="btn btn-default">
+          <button onClick={props.readButtonToolbar} className="btn btn-default" disabled="">
             Mark As Read
           </button>
 

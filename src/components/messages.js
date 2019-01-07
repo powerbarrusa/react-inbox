@@ -12,6 +12,7 @@ const MessageList = (props) => {
             messageRead={props.messageRead}
             messageUnread={props.messageUnread}
             messageSelected={props.messageSelected}
+            messageStarred={props.messageStarred}
           />
           )
         })

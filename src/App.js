@@ -59,7 +59,7 @@ class App extends Component {
     selectedMessages.forEach(messages => this.messageUnreadClick(messages.id))
   }
 
-  messageSelected = async (id) => {
+  messageSelected = (id) => {
     const selected = this.state.email.map(message => {
       if (message.id === id){
         message.selected = !message.selected
@@ -68,6 +68,18 @@ class App extends Component {
     })
     this.setState({
       email: selected
+    })
+  }
+
+  messageStarred = (id) => {
+    const starred = this.state.email.map(message => {
+      if (message.id === id) {
+        message.starred = !message.starred
+      }
+      return message
+    })
+    this.setState({
+      email: starred
     })
   }
 
@@ -82,6 +94,7 @@ class App extends Component {
           inbox={this.state.email}
           messageRead={this.messageReadClick}
           messageSelected={this.messageSelected}
+          messageStarred={this.messageStarred}
         />
       </div>
     )
