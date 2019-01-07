@@ -1,13 +1,12 @@
 import React from 'react';
 
 const SingleMessage = (props) => {
-  console.log(props.message.selected)
   return (
     <div className="container">
       <div className="col-xs-1">
         <div className="row">
           <div className="col-xs-2">
-            <input className={props.message.selected ? "selected" : ""} onClick={() => props.messageSelected(props.message.selected)} type="checkbox" />
+            <input checked={(typeof props.message.selected !== "undefined") && props.message.selected === true ? "checked" : ""} onClick={() => props.messageSelected(props.message.id)} type="checkbox" />
           </div>
           <div className="col-xs-2">
             <i className="star fa fa-star-o"></i>

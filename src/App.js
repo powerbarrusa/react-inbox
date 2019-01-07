@@ -19,12 +19,12 @@ class App extends Component {
       })
     }
 
-  messageRead = (id) => {
-    const updateMessage = this.state.email.map(messages => {
-      if (messages.id === id){
-        messages.read = !messages.read
+  messageReadClick = (id) => {
+    const updateMessage = this.state.email.map(message => {
+      if (message.id === id){
+        message.read = true
       }
-      return messages
+      return message
     })
     this.setState({
       email: updateMessage
@@ -32,15 +32,17 @@ class App extends Component {
   }
 
   messageReadToolbar = () => {
-    console.log("hello")
+    const selectedMessages = this.state.email.filter(message => message.selected === true)
+    console.log("selectedMessages", selectedMessages)
+    selectedMessages.forEach(messages => this.messageReadClick(messages.id))
   }
 
-  messageSelected = (event) => {
-    const selected = this.state.email.map(messages => {
-      if (messages.selected){
-        messages.selected = !messages.selected
+  messageSelected = async (id) => {
+    const selected = this.state.email.map(message => {
+      if (message.id === id){
+        message.selected = !message.selected
       }
-      return messages
+      return message
     })
     this.setState({
       email: selected
@@ -55,7 +57,7 @@ class App extends Component {
         />
         <Messages
           inbox={this.state.email}
-          messageRead={this.messageReadButton}
+          messageRead={this.messageReadClick}
           messageSelected={this.messageSelected}
         />
       </div>
