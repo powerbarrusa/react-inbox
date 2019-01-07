@@ -2,7 +2,7 @@ import React from 'react';
 
 const SingleMessage = (props) => {
   return (
-    <div className="container">
+    <div className={props.message.read ? "row message read" : "row message unread"}>
       <div className="col-xs-1">
         <div className="row">
           <div className="col-xs-2">
@@ -13,7 +13,7 @@ const SingleMessage = (props) => {
           </div>
         </div>
       </div>
-      <div className={props.message.read ? "row message read" : "row message unread"} onClick={() => props.messageRead(props.message.id)}>
+      <div onClick={() => props.messageRead(props.message.id)}>
         <div className="col-xs-11">
           <a href="#">
           {props.message.subject}

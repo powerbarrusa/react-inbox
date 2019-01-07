@@ -13,7 +13,13 @@ class App extends Component {
    
   async componentDidMount(){
     const api = await fetch('http://localhost:8082/api/messages')
-    const messages = await api.json()
+    const awaitApi = await api.json()
+    const messages = awaitApi.map(messages => {
+      messages.read = false
+      messages.starred = false
+      messages.selected = false
+      return messages
+    })
     this.setState({
         email: messages
       })
@@ -33,7 +39,6 @@ class App extends Component {
 
   messageReadToolbar = () => {
     const selectedMessages = this.state.email.filter(message => message.selected === true)
-    console.log("selectedMessages", selectedMessages)
     selectedMessages.forEach(messages => this.messageReadClick(messages.id))
   }
 
