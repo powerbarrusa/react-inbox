@@ -15,8 +15,6 @@ class App extends Component {
     const api = await fetch('http://localhost:8082/api/messages')
     const awaitApi = await api.json()
     const messages = awaitApi.map(messages => {
-      messages.read = false
-      messages.starred = false
       messages.selected = false
       return messages
     })
@@ -24,6 +22,23 @@ class App extends Component {
         email: messages
       })
     }
+
+  updates = async (id, command, prop, value) => {
+    let message = {
+      messageIds: [id],
+      command: command,
+      [prop]: value
+    }
+      await fetch("http://localhost:8082/api/messages", {
+        method: "PATCH",
+        body: JSON.stringify(message),
+        headers: {
+          "Content-Type": "application/json",
+          "Accept": "application/json",
+        }
+      })
+    }
+  
 
   messageReadClick = (id) => {
     const updateMessage = this.state.email.map(message => {
@@ -35,6 +50,7 @@ class App extends Component {
     this.setState({
       email: updateMessage
     })
+    this.updates(id, "read", "read", true)
   }
 
   messageUnreadClick = (id) => {
@@ -47,6 +63,7 @@ class App extends Component {
     this.setState({
       email: updateMessage
     })
+    this.updates(id, "read", "read", false)
   }
 
   messageReadToolbar = () => {
@@ -90,6 +107,7 @@ class App extends Component {
     this.setState({
       email: starred
     })
+    this.updates(id, "star", "star", true)
   }
 
   render() {

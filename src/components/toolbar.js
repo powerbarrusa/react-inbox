@@ -17,6 +17,10 @@ const Toolbar = (props) => {
             unread messages
           </p>
 
+          <a href="/#" className="btn btn-danger">
+            <i className="fa fa-plus"></i>
+          </a>
+
           <button onClick={() => props.allMessagesSelected()} className="btn btn-default">
             <i className="fa fa-square-o"></i>
           </button>
@@ -29,21 +33,21 @@ const Toolbar = (props) => {
             Mark As Unread
           </button>
 
-          <select className="form-control label-select" disabled="disabled">
+          <select className="form-control label-select" disabled="">
             <option>Apply label</option>
             <option value="dev">dev</option>
             <option value="personal">personal</option>
             <option value="gschool">gschool</option>
           </select>
 
-          <select className="form-control label-select" disabled="disabled">
+          <select className="form-control label-select" disabled="">
             <option>Remove label</option>
             <option value="dev">dev</option>
             <option value="personal">personal</option>
             <option value="gschool">gschool</option>
           </select>
 
-          <button className="btn btn-default" disabled="disabled">
+          <button className="btn btn-default" disabled="">
             <i className="fa fa-trash-o"></i>
           </button>
         </div>
