@@ -15,7 +15,7 @@ const SingleMessage = (props) => {
       </div>
       <div onClick={() => props.messageReadClick(props.message.id)}>
         <div className="col-xs-11">
-          <a href="#">
+          <a href="/#">
             {props.message.subject}
           </a>
         </div>
