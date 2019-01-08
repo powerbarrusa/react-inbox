@@ -13,7 +13,7 @@ const SingleMessage = (props) => {
           </div>
         </div>
       </div>
-      <div onClick={() => props.messageRead(props.message.id)}>
+      <div onClick={() => props.messageReadClick(props.message.id)}>
         <div className="col-xs-11">
           <a href="#">
             {props.message.subject}

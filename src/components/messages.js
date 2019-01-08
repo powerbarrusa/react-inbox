@@ -9,8 +9,7 @@ const MessageList = (props) => {
           <SingleMessage
             message={message}
             key={idx}
-            messageRead={props.messageRead}
-            messageUnread={props.messageUnread}
+            messageReadClick={props.messageReadClick}
             messageSelected={props.messageSelected}
             messageStarred={props.messageStarred}
           />

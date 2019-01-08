@@ -71,6 +71,15 @@ class App extends Component {
     })
   }
 
+  allMessagesSelected = () => {
+    const selectedAll = this.state.email.filter(message => message.selected === true)
+    const currentSelected = this.state.email.length
+    console.log(currentSelected)
+    this.setState({
+      email: selectedAll
+    })
+  }
+
   messageStarred = (id) => {
     const starred = this.state.email.map(message => {
       if (message.id === id) {
@@ -87,12 +96,13 @@ class App extends Component {
     return (
       <div className="container">
         <Toolbar
-          readButtonToolbar={this.messageReadToolbar}
-          unreadButtonToolbar={this.messageUnreadToolbar}
+          messageReadToolbar={this.messageReadToolbar}
+          messageUnreadToolbar={this.messageUnreadToolbar}
+          allMessagesSelected={this.allMessagesSelected}
         />
         <Messages
           inbox={this.state.email}
-          messageRead={this.messageReadClick}
+          messageReadClick={this.messageReadClick}
           messageSelected={this.messageSelected}
           messageStarred={this.messageStarred}
         />

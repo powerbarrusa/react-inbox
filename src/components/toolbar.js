@@ -17,15 +17,15 @@ const Toolbar = (props) => {
             unread messages
           </p>
 
-          <button className="btn btn-default">
+          <button onClick={() => props.allMessagesSelected()} className="btn btn-default">
             <i className="fa fa-square-o"></i>
           </button>
 
-          <button onClick={props.readButtonToolbar} className="btn btn-default" disabled="">
+          <button onClick={props.messageReadToolbar} className="btn btn-default" disabled="">
             Mark As Read
           </button>
 
-          <button onClick={props.unreadButtonToolbar} className="btn btn-default">
+          <button onClick={props.messageUnreadToolbar} className="btn btn-default" disabled="">
             Mark As Unread
           </button>
 
