@@ -2,12 +2,6 @@ import React from 'react';
 
 const Toolbar = (props) => {
 
-  function disabledTool() {
-    const selected = props.state.email.map(message => message.selected)
-    const check = selected === true ? "" : "disabled"
-    return check
-  }
-
   return (
     <div className="container">
       <div className="row toolbar">

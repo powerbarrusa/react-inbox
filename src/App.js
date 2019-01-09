@@ -89,9 +89,16 @@ class App extends Component {
   }
 
   allMessagesSelected = () => {
-    const selectedAll = this.state.email.filter(message => message.selected === true)
-    const currentSelected = this.state.email.length
-    console.log(currentSelected)
+    const selectedAll = this.state.email.filter(message => {
+      if (message.selected === false){
+        message.selected = !message.selected
+      }
+      else if (message.selected === true){
+        message.selected = !message.selected
+      }
+      return message
+    })
+    console.log(selectedAll)
     this.setState({
       email: selectedAll
     })
