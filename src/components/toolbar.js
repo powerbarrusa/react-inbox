@@ -12,11 +12,11 @@ const Toolbar = (props) => {
           </p>
 
           <a href="/#" className="btn btn-danger">
-            <i className="fa fa-plus"></i>
+            <i className="fa fa-plus" onClick={props.composeForm}></i>
           </a>
 
-          <button onClick={() => props.allMessagesSelected()} className="btn btn-default">
-            <i className="fa fa-square-o"></i>
+          <button onClick={props.allMessagesSelected} className="btn btn-default">
+            <i className="fa fa-check-square-o"></i>
           </button>
 
           <button onClick={props.messageReadToolbar} className="btn btn-default" disabled="">

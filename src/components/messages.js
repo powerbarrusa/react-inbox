@@ -2,6 +2,7 @@ import React from 'react';
 import SingleMessage from './singlemessage';
 
 const MessageList = (props) => {
+  console.log(props)
   return (
     <div>
       {props.inbox.map((message, idx) => {
@@ -12,6 +13,7 @@ const MessageList = (props) => {
             messageReadClick={props.messageReadClick}
             messageSelected={props.messageSelected}
             messageStarred={props.messageStarred}
+            compose={props.compose}
           />
           )
         })

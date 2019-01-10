@@ -2,18 +2,21 @@ import React, { Component } from 'react';
 import './App.css';
 import Toolbar from './components/toolbar.js';
 import Messages from './components/messages.js';
+import Compose from './components/compose.js';
 
 class App extends Component {
-  constructor(props){
-    super(props)
+  constructor(){
+    super()
     this.state = {
-      email: []
+      email: [],
+      compose: false
     }
   }
    
   async componentDidMount(){
     const api = await fetch('http://localhost:8082/api/messages')
     const awaitApi = await api.json()
+    .catch(error => console.error("Error", error))
     const messages = awaitApi.map(messages => {
       messages.selected = false
       return messages
@@ -38,7 +41,14 @@ class App extends Component {
         }
       })
     }
-  
+
+  composeForm = () => {
+    this.setState({compose: !this.state.compose})
+  }  
+
+  showComposeForm = () => {
+    return this.state.compose ? <Compose/> : null
+  }
 
   messageReadClick = (id) => {
     const updateMessage = this.state.email.map(message => {
@@ -121,10 +131,12 @@ class App extends Component {
     return (
       <div className="container">
         <Toolbar
+          composeForm={this.composeForm}
           messageReadToolbar={this.messageReadToolbar}
           messageUnreadToolbar={this.messageUnreadToolbar}
           allMessagesSelected={this.allMessagesSelected}
         />
+        {this.showComposeForm()}
         <Messages
           inbox={this.state.email}
           messageReadClick={this.messageReadClick}
