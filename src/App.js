@@ -42,6 +42,11 @@ class App extends Component {
       })
     }
 
+  unreadCount = () => {
+      const count = this.state.email.filter(message => message.read === false)
+      return count.length
+    }  
+
   composeForm = () => {
     this.setState({compose: !this.state.compose})
   }  
@@ -108,7 +113,6 @@ class App extends Component {
       }
       return message
     })
-    console.log(selectedAll)
     this.setState({
       email: selectedAll
     })
@@ -135,6 +139,7 @@ class App extends Component {
           messageReadToolbar={this.messageReadToolbar}
           messageUnreadToolbar={this.messageUnreadToolbar}
           allMessagesSelected={this.allMessagesSelected}
+          unreadCount={this.unreadCount}
         />
         {this.showComposeForm()}
         <Messages
