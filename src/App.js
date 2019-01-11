@@ -9,16 +9,16 @@ class App extends Component {
     super()
     this.state = {
       email: [],
-      compose: false
+      compose: false,
     }
   }
    
   async componentDidMount(){
     const api = await fetch('http://localhost:8082/api/messages')
     const awaitApi = await api.json()
-    .catch(error => console.error("Error", error))
     const messages = awaitApi.map(messages => {
       messages.selected = false
+      messages.expanded = false
       return messages
     })
     this.setState({
@@ -131,6 +131,26 @@ class App extends Component {
     this.updates(id, "star", "star", true)
   }
 
+  composeForm = () => {
+    this.setState({compose: !this.state.compose})
+  }  
+
+  showComposeForm = () => {
+    return this.state.compose ? <Compose/> : null
+  }
+
+  emailBody = (id) => {
+    const emailBody = this.state.email.map(message => {
+    if (message.id === id) {
+      return message.expanded = !message.expanded
+    }
+    return message
+  })
+  this.setState({
+      expanded: emailBody
+    })
+  }
+
   render() {
     return (
       <div className="container">
@@ -147,6 +167,7 @@ class App extends Component {
           messageReadClick={this.messageReadClick}
           messageSelected={this.messageSelected}
           messageStarred={this.messageStarred}
+          emailBody={this.emailBody}
         />
       </div>
     )

@@ -11,8 +11,8 @@ const Toolbar = (props) => {
             unread messages
           </p>
 
-          <a href="/#" className="btn btn-danger">
-            <i className="fa fa-plus" onClick={props.composeForm}></i>
+          <a href="/#" className="btn btn-danger" onClick={props.composeForm}>
+            <i className="fa fa-plus"></i>
           </a>
 
           <button onClick={props.allMessagesSelected} className="btn btn-default">

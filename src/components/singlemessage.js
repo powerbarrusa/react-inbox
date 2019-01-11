@@ -1,6 +1,10 @@
 import React from 'react';
+import Body from './emailbody.js';
 
 const SingleMessage = (props) => {
+
+  const expanded = props.message.expanded ? <Body messageBody={props.message.body} /> : ""
+
   return (
     <div className={`row message ${props.message.read ? "read" : "unread"} ${props.message.selected ? "selected" : ""}`}>
       <div className="col-xs-1">
@@ -15,8 +19,9 @@ const SingleMessage = (props) => {
       </div>
       <div onClick={() => props.messageReadClick(props.message.id)}>
         <div className="col-xs-11">
-          <a href="/#">
+          <a href="/#" onClick={() => props.emailBody(props.message.id)}>
             {props.message.subject}
+            {expanded}
           </a>
         </div>
       </div>
