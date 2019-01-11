@@ -160,6 +160,13 @@ class App extends Component {
     })
   }
 
+  deleteMessages = () => {
+    const selectedMessages = this.state.email.filter(message => message.selected === false)
+    this.setState({
+      email: selectedMessages
+    })
+  }
+
   render() {
     return (
       <div className="container">
@@ -170,6 +177,7 @@ class App extends Component {
           allMessagesSelected={this.allMessagesSelected}
           unreadCount={this.unreadCount}
           disabledButtons={this.disabledButtons}
+          deleteMessages={this.deleteMessages}
           state = {this.state}
         />
         {this.showComposeForm()}
