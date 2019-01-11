@@ -9,7 +9,7 @@ class App extends Component {
     super()
     this.state = {
       email: [],
-      compose: false,
+      compose: false
     }
   }
    
