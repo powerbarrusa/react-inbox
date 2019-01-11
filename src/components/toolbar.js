@@ -4,8 +4,12 @@ const Toolbar = (props) => {
 
   const selectedMessages = props.state.email.filter(message => message.selected === true).length
   let disabled = false
+  let amt = "fa-minus-square-o"
   if (selectedMessages === 0) {
     disabled = true
+    amt = "fa-square-o"
+  } else if (selectedMessages === props.state.email.length && selectedMessages !== 0){
+    amt = "fa-check-square-o"
   }
 
   return (
@@ -22,7 +26,7 @@ const Toolbar = (props) => {
           </a>
 
           <button onClick={props.allMessagesSelected} className="btn btn-default">
-            <i className="fa fa-check-square-o"></i>
+            <i className={`fa ${amt}`}></i>
           </button>
 
           <button onClick={props.messageReadToolbar} className="btn btn-default" disabled={disabled}>
