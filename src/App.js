@@ -14,17 +14,21 @@ class App extends Component {
   }
    
   async componentDidMount(){
-    const api = await fetch('http://localhost:8082/api/messages')
-    const awaitApi = await api.json()
-    const messages = awaitApi.map(messages => {
-      messages.selected = false
-      messages.expanded = false
-      return messages
-    })
-    this.setState({
+    try {
+      const api = await fetch('http://localhost:8082/api/messages')
+      const awaitApi = await api.json()
+      const messages = awaitApi.map(messages => {
+        messages.selected = false
+        messages.expanded = false
+        return messages
+      })
+      this.setState({
         email: messages
       })
+    } catch (error) {
+      console.log(error)
     }
+  }
 
   updates = async (id, command, prop, value) => {
     let message = {
@@ -89,6 +93,10 @@ class App extends Component {
   messageUnreadToolbar = () => {
     const selectedMessages = this.state.email.filter(message => message.selected === true)
     selectedMessages.forEach(messages => this.messageUnreadClick(messages.id))
+  }
+
+  selectedMessages = () => {
+    const selectedMessages = this.state.email.filter(message => message.selected === true).length
   }
 
   messageSelected = (id) => {
