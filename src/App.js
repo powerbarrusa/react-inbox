@@ -95,8 +95,9 @@ class App extends Component {
     selectedMessages.forEach(messages => this.messageUnreadClick(messages.id))
   }
 
-  selectedMessages = () => {
+  disabledButtons = () => {
     const selectedMessages = this.state.email.filter(message => message.selected === true).length
+    return selectedMessages
   }
 
   messageSelected = (id) => {
@@ -168,6 +169,8 @@ class App extends Component {
           messageUnreadToolbar={this.messageUnreadToolbar}
           allMessagesSelected={this.allMessagesSelected}
           unreadCount={this.unreadCount}
+          disabledButtons={this.disabledButtons}
+          state = {this.state}
         />
         {this.showComposeForm()}
         <Messages

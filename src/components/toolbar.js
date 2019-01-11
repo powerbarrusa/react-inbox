@@ -2,6 +2,12 @@ import React from 'react';
 
 const Toolbar = (props) => {
 
+  const selectedMessages = props.state.email.filter(message => message.selected === true).length
+  let disabled = false
+  if (selectedMessages === 0) {
+    disabled = true
+  }
+
   return (
     <div className="container">
       <div className="row toolbar">
@@ -19,29 +25,29 @@ const Toolbar = (props) => {
             <i className="fa fa-check-square-o"></i>
           </button>
 
-          <button onClick={props.messageReadToolbar} className="btn btn-default" disabled="">
+          <button onClick={props.messageReadToolbar} className="btn btn-default" disabled={disabled}>
             Mark As Read
           </button>
 
-          <button onClick={props.messageUnreadToolbar} className="btn btn-default" disabled="">
+          <button onClick={props.messageUnreadToolbar} className="btn btn-default" disabled={disabled}>
             Mark As Unread
           </button>
 
-          <select className="form-control label-select" disabled="">
+          <select className="form-control label-select" disabled={disabled}>
             <option>Apply label</option>
             <option value="dev">dev</option>
             <option value="personal">personal</option>
             <option value="gschool">gschool</option>
           </select>
 
-          <select className="form-control label-select" disabled="">
+          <select className="form-control label-select" disabled={disabled}>
             <option>Remove label</option>
             <option value="dev">dev</option>
             <option value="personal">personal</option>
             <option value="gschool">gschool</option>
           </select>
 
-          <button className="btn btn-default" disabled="">
+          <button className="btn btn-default" disabled={disabled}>
             <i className="fa fa-trash-o"></i>
           </button>
         </div>
