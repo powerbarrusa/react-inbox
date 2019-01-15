@@ -37,14 +37,14 @@ const Toolbar = (props) => {
             Mark As Unread
           </button>
 
-          <select className="form-control label-select" disabled={disabled}>
+          <select className="form-control label-select" onChange={() => {console.log("add label")}} disabled={disabled}>
             <option>Apply label</option>
             <option value="dev">dev</option>
             <option value="personal">personal</option>
             <option value="gschool">gschool</option>
           </select>
 
-          <select className="form-control label-select" disabled={disabled}>
+          <select className="form-control label-select" onChange={() => {console.log("remove label")}} disabled={disabled}>
             <option>Remove label</option>
             <option value="dev">dev</option>
             <option value="personal">personal</option>
