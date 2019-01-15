@@ -167,6 +167,12 @@ class App extends Component {
     })
   }
 
+  // showLabels = () => {
+  //   const showLabels = this.state.email.map(message => message.labels)
+  //   console.log(showLabels)
+  //   return showLabels
+  // }
+
   render() {
     return (
       <div className="container">
@@ -187,6 +193,7 @@ class App extends Component {
           messageSelected={this.messageSelected}
           messageStarred={this.messageStarred}
           emailBody={this.emailBody}
+          showLabels={this.showLabels}
         />
       </div>
     )

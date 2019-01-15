@@ -14,6 +14,7 @@ const MessageList = (props) => {
             messageSelected={props.messageSelected}
             messageStarred={props.messageStarred}
             emailBody={props.emailBody}
+            showLabels={props.showLabels}
           />
           )
         })
