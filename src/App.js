@@ -167,11 +167,31 @@ class App extends Component {
     })
   }
 
-  // showLabels = () => {
-  //   const showLabels = this.state.email.map(message => message.labels)
-  //   console.log(showLabels)
-  //   return showLabels
-  // }
+  labelMessages = (e) => {
+    let tag = e.target.value
+    let messages = this.state.email
+    messages.forEach(message => {
+      if (message.selected && !message.labels.includes(tag) && tag !== "Apply label"){
+        message.labels.push(tag)
+      }
+    })
+    this.setState({
+      email: messages
+    })
+  }
+
+  removeLabel = (e) => {
+    let tag = e.target.value
+    let messages = this.state.email
+    messages.forEach(message => {
+      if (message.selected && message.labels.includes(tag) && tag !== "Remove label"){
+        message.labels.splice(e)
+      }
+    })
+    this.setState({
+      email: messages
+    })
+  }
 
   render() {
     return (
@@ -184,6 +204,8 @@ class App extends Component {
           unreadCount={this.unreadCount}
           disabledButtons={this.disabledButtons}
           deleteMessages={this.deleteMessages}
+          labelMessages={this.labelMessages}
+          removeLabel={this.removeLabel}
           state = {this.state}
         />
         {this.showComposeForm()}
@@ -193,7 +215,6 @@ class App extends Component {
           messageSelected={this.messageSelected}
           messageStarred={this.messageStarred}
           emailBody={this.emailBody}
-          showLabels={this.showLabels}
         />
       </div>
     )

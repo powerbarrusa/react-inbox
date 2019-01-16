@@ -4,7 +4,6 @@ import Body from './emailbody.js';
 const SingleMessage = (props) => {
 
   const expanded = props.message.expanded ? <Body messageBody={props.message.body} /> : ""
-  console.log(props.message.labels)
 
   return (
     <div className={`row message ${props.message.read ? "read" : "unread"} ${props.message.selected ? "selected" : ""}`}>
