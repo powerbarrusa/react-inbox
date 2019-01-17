@@ -185,7 +185,7 @@ class App extends Component {
     let messages = this.state.email
     messages.forEach(message => {
       if (message.selected && message.labels.includes(tag) && tag !== "Remove label"){
-        message.labels.splice(e)
+        message.labels.splice(message.labels.indexOf(tag))
       }
     })
     this.setState({
