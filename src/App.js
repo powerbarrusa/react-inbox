@@ -9,7 +9,8 @@ class App extends Component {
     super()
     this.state = {
       email: [],
-      compose: false
+      compose: false,
+      newMessage: []
     }
   }
    
@@ -145,7 +146,11 @@ class App extends Component {
   }  
 
   showComposeForm = () => {
-    return this.state.compose ? <Compose/> : null
+    return this.state.compose ? 
+    <Compose
+      updateMessageBody={this.updateMessageBody}
+      updateMessageSubject={this.updateMessageSubject}
+    /> : null
   }
 
   emailBody = (id) => {
@@ -178,19 +183,33 @@ class App extends Component {
     this.setState({
       email: messages
     })
+    this.updates(this.findSelected, "addLabel", "label", "dev")
+  }
+
+  findSelected = () => {
+    return this.state.email.filter(message => message.selected).map(message => message.id)
   }
 
   removeLabel = (e) => {
     let tag = e.target.value
     let messages = this.state.email
     messages.forEach(message => {
-      if (message.selected && message.labels.includes(tag) && tag !== "Remove label"){
-        message.labels.splice(message.labels.indexOf(tag, 1))
+      if (message.selected){
+        message.labels = message.labels.filter(label => label !== tag)
       }
     })
     this.setState({
       email: messages
     })
+    this.updates(this.findSelected, "removeLabel", "label", "dev")
+  }
+
+  updateMessageBody = (e) => {
+    console.log("body!")
+  }
+
+  updateMessageSubject = (e) => {
+    console.log("subject!")
   }
 
   render() {
