@@ -10,7 +10,7 @@ class App extends Component {
     this.state = {
       email: [],
       compose: false,
-      newMessage: []
+      message: {body: "", subject: ""}
     }
   }
    
@@ -55,10 +55,6 @@ class App extends Component {
   composeForm = () => {
     this.setState({compose: !this.state.compose})
   }  
-
-  showComposeForm = () => {
-    return this.state.compose ? <Compose/> : null
-  }
 
   messageReadClick = (id) => {
     const updateMessage = this.state.email.map(message => {
@@ -150,6 +146,7 @@ class App extends Component {
     <Compose
       updateMessageBody={this.updateMessageBody}
       updateMessageSubject={this.updateMessageSubject}
+      addNewMessage={this.addNewMessage}
     /> : null
   }
 
@@ -205,11 +202,24 @@ class App extends Component {
   }
 
   updateMessageBody = (e) => {
-    console.log("body!")
+    this.setState({
+      message:{body: e.target.value,
+      subject: this.state.message.subject}
+    })
   }
 
   updateMessageSubject = (e) => {
-    console.log("subject!")
+    this.setState({
+      message:{body: this.state.message.body,
+      subject: e.target.value}
+    })
+  }
+
+  addNewMessage = (e) => {
+    e.preventDefault()
+    this.setState({
+      email: [...this.state.email, this.state.message]
+    })
   }
 
   render() {
