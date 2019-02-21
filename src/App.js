@@ -10,7 +10,7 @@ class App extends Component {
     this.state = {
       email: [],
       compose: false,
-      message: {body: "", subject: ""}
+      message: [{body: "", subject: "", labels: []}]
     }
   }
    
@@ -204,14 +204,14 @@ class App extends Component {
   updateMessageBody = (e) => {
     this.setState({
       message:{body: e.target.value,
-      subject: this.state.message.subject}
+      subject: this.state.message.subject, labels: this.state.labels}
     })
   }
 
   updateMessageSubject = (e) => {
     this.setState({
       message:{body: this.state.message.body,
-      subject: e.target.value}
+      subject: e.target.value, labels: this.state.labels}
     })
   }
 
