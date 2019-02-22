@@ -20,7 +20,6 @@ class App extends Component {
       const api = await fetch('http://localhost:8082/api/messages')
       const awaitApi = await api.json()
       const messageIds = awaitApi.map(messages => messages.id)
-      console.log(messageIds)
       const max = Math.max.apply(null, messageIds)
       const messages = awaitApi.map(messages => {
         messages.selected = false
