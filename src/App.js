@@ -9,6 +9,7 @@ class App extends Component {
     super()
     this.state = {
       email: [],
+      id: 0,
       compose: false,
       message: [{body: "", subject: "", labels: []}]
     }
@@ -18,13 +19,17 @@ class App extends Component {
     try {
       const api = await fetch('http://localhost:8082/api/messages')
       const awaitApi = await api.json()
+      const messageIds = awaitApi.map(messages => messages.id)
+      console.log(messageIds)
+      const max = Math.max.apply(null, messageIds)
       const messages = awaitApi.map(messages => {
         messages.selected = false
         messages.expanded = false
         return messages
       })
       this.setState({
-        email: messages
+        email: messages,
+        id: max
       })
     } catch (error) {
       console.log(error)
@@ -204,14 +209,14 @@ class App extends Component {
   updateMessageBody = (e) => {
     this.setState({
       message:{body: e.target.value,
-      subject: this.state.message.subject, labels: []}
+      subject: this.state.message.subject, labels: [], id: this.state.id + 1}
     })
   }
 
   updateMessageSubject = (e) => {
     this.setState({
       message:{body: this.state.message.body,
-      subject: e.target.value, labels: []}
+      subject: e.target.value, labels: [], id: this.state.id + 1}
     })
   }
 
