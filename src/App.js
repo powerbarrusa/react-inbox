@@ -204,14 +204,14 @@ class App extends Component {
   updateMessageBody = (e) => {
     this.setState({
       message:{body: e.target.value,
-      subject: this.state.message.subject, labels: this.state.labels}
+      subject: this.state.message.subject, labels: []}
     })
   }
 
   updateMessageSubject = (e) => {
     this.setState({
       message:{body: this.state.message.body,
-      subject: e.target.value, labels: this.state.labels}
+      subject: e.target.value, labels: []}
     })
   }
 
